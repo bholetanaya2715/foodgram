@@ -1,0 +1,34 @@
+<div>
+    <form action="/recipe/searchArecipe" method="post" id="formForSearch">
+        <label>
+            <input type="search" id="searchTerm" name="searchTerm" placeholder="Search A Recipe">
+        </label>
+        <label>
+            <input type="submit" value="Submit">
+        </label>
+        <br><br>
+    </form>
+    <div id="errorcheck">
+    {{#if error}}
+    <p>{{error}}</p>
+    {{/if}}
+    <ul>
+                {{#each searchResults}}
+                     <ul class='recipeDisplay'>
+                        <li class='recipeList'> 
+                            <a  href="/recipe/post/{{_id}}"><img class='recipeListImage' alt='{{_id}} picture' src='/public/images/{{recipePicture}}'/></a><br>
+                            <div class="recipeContent">
+                            <a href="/recipe/post/{{_id}}">{{recipeName}}</a>
+                            <p>Created By <a href='/users/profile/{{posterId}}'>{{posterUsername}}</a></p>
+                            </div>
+                        </li>
+                    </ul> 
+                     {{else}}
+                    <h2 class="not-found">No Results Found</h2>
+                    <p>try searching using complete words like "chicken" or "curry"</p>
+                {{/each}}     
+        </ul>
+    </div>
+    <center> <a href="/loggedIn">Back To Feed</a></center>
+    <script src="/public/js/clientSidepostArecipe.js"></script>
+</div>

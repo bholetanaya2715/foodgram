@@ -1,0 +1,33 @@
+<div>
+<form action="/recipe/sortByDietaryTags" method="post" id="formForSortByDietaryTags">
+    <label >Sort by Dietary Tag</label>
+    <br><br>
+    <select id="dietarytags" name="dietarytags">
+        <option value="vegan">Vegan</option>
+        <option value="vegetarian">Vegetarian</option>
+        <option value="nonvegetarian">Non-Vegetarian</option>
+    </select>
+    <label>
+        <input type="submit" value="Submit Option" id="submit7">
+    </label>
+</form>
+</div>
+<div>
+{{#if error}}
+<p>{{error}}</p>
+{{/if}}
+</div>
+<div>
+{{#each sortDT}}
+<ul class='recipeDisplay'>
+        <li class='recipeList'> 
+            <a  href="/recipe/post/{{_id}}"><img class='recipeListImage' alt='{{_id}} picture' src='/public/images/{{recipePicture}}'/></a><br>
+            <div class="recipeContent">
+            <a href="/recipe/post/{{_id}}">{{recipeName}}</a>
+            <p>Created By <a href='/users/profile/{{posterId}}'>{{posterUsername}}</a></p>
+            </div>
+        </li>
+</ul>
+{{/each}}
+</div>
+<a href="/loggedIn">Back To Feed</a>

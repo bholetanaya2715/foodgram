@@ -1,0 +1,83 @@
+    <title>{{user.username}} Profile Page</title>
+    <link rel='stylesheet' href='public/css/style.css'/>
+    <button id='likesButton' >Likes</button>
+    <button id='profileButton' hidden>Profile</button>
+    <div id="profile">
+        <h1>{{user.username}}</h1>
+        <br>
+        <br>
+        <img class='photo' alt='{{user.username}} profile picture' src='/public/images/{{user.profilePicture}}' />
+        <br>
+        <br>
+        <h2> {{user.firstName}}  {{user.lastName}}</h2>
+        <br>
+        <br>
+        <p>Bio: {{user.bio}}</p>
+        <br>
+        <p>Favorite Recipe: {{user.favoriteRecipe}}</p>
+        <br>
+        <br>
+        <h2>Posted Recipes</h2>
+        <div class='table'>
+        <ul class='recipeDisplay'>
+                {{#each recipes}}
+                     <li class='recipeList'> 
+                    <a  href="/recipe/post/{{_id}}"><img class='recipeListImage' alt='{{_id}} picture' src='/public/images/{{recipePicture}}'/></a><br>
+                    <div class="recipeContent">
+                    <a href="/recipe/post/{{_id}}">{{recipeName}}</a>
+                    <p>Created By <a href='/users/profile/{{posterId}}'>{{posterUsername}}</a></p>
+                    </div>
+                    </li>
+                    {{else}}
+                    <p class="not-found">We're sorry, but this user has not posted any recipes.</p>
+                {{/each}}     
+        </ul>
+        </div>
+    </div>
+    <div id='likes' hidden>
+        <h1>{{user.username}}</h1>
+        <br>
+        <br>
+        <img class='photo' alt='{{user.username}} profile picture' src='/public/images/{{user.profilePicture}}' />
+        <br>
+        <br>
+        <h2> {{user.firstName}}  {{user.lastName}}</h2>
+        <br>
+        <br>
+        <h2>Liked Recipes:</h2>
+        <div class='table'>
+        <ul class='recipeDisplay'>
+                {{#each likes}}
+                    <li class='recipeList'> 
+                    <a  href="/recipe/post/{{_id}}"><img class='recipeListImage' alt='{{_id}} picture' src='/public/images/{{recipePicture}}'/></a><br>
+                    <div class="recipeContent">
+                    <a href="/recipe/post/{{_id}}">{{recipeName}}</a>
+                    <p>Created By <a href='/users/profile/{{posterId}}'>{{posterUsername}}</a></p>
+                    </div>
+                    </li>
+                    {{else}}
+                    <p class="not-found">We're sorry, but this user has not liked any recipes.</p>
+                {{/each}}     
+        </ul>
+        </div>
+    </div>
+    <a href="/loggedIn">Back to Feed</a>
+<script>
+        let profileButton = document.getElementById('profileButton')
+        let likesButton = document.getElementById('likesButton')
+        let profile = document.getElementById('profile')
+        let likes = document.getElementById('likes')
+            
+        likesButton.addEventListener('click',(event)=>{
+            profile.hidden = true;
+            likesButton.hidden = true;
+            profileButton.hidden = false;
+            likes.hidden = false;
+        }) 
+        profileButton.addEventListener('click',(event)=>{
+            profile.hidden = false;
+            likesButton.hidden = false;
+            profileButton.hidden = true;
+            likes.hidden = true;
+        })          
+</script>

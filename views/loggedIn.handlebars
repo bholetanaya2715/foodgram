@@ -1,0 +1,66 @@
+<div>
+    <h1>FOODGRAM</h1>
+    <h2>Hello, {{username}}</h2>
+    <form action="/recipe/searchArecipe" method="post" id="formForSearch">SEARCH A RECIPE
+        <br>
+        <label>
+            <input type="text" id="searchTerm" name="searchTerm" placeholder="Search A Recipe">
+        </label>
+        <label>
+            <input type="submit" value="Submit" id="submit1">
+        </label>
+        <br><br>
+    </form>
+    <div id="errorcheck">
+        {{#if error}}
+        <p>{{error}}</p>
+        {{/if}}
+    </div>
+    <label>
+        <button type="submit" onclick= "window.location.href='users/myPage'" id="myprofile" name="myProfile">VIEW MY PROFILE</button>
+    </label>
+    <label>
+        <button type="button" onclick= "window.location.href='recipe/postArecipe'" id="postarecipe" name="postrecipe">POST A RECIPE</button>
+    </label>
+    <br><br>
+    <br><br>
+    <h3 id="sid">SORTING FILTERS</h3>
+    <button onclick="window.location.href='recipe/sortByDietaryTags'" id="buttonForDtags">SORT BY DIETARY TAGS</button>
+    <br><br>
+    <button onclick="window.location.href='recipe/sortedCuisine'" id="buttonForCuisine">SORT BY CUISINE</button>
+    <br><br>
+    <button id='sortLikesButton'>SORT BY LIKES</button>
+    <button  id='defaultSortButton' hidden>SORT BY POST DATE</button>
+    <div id='defaultList'>
+    {{#if allRecipes}}
+    {{#each allRecipes}}
+    <ul class='recipeDisplay'>
+        <li class='recipeList'> 
+            <a  href="/recipe/post/{{_id}}"><img class='recipeListImage' alt='{{_id}} picture' src='/public/images/{{recipePicture}}'/></a><br>
+            <div class="recipeContent">
+            <a href="/recipe/post/{{_id}}">{{recipeName}}</a>
+            <p>Created By @<a href='/users/profile/{{posterId}}'>{{posterUsername}}</a></p>
+            </div>
+        </li>
+    </ul>
+    {{/each}}
+    {{/if}}
+    </div>
+    <div id='likeSort' hidden>
+    {{#if sortByLikes}}
+    {{#each sortByLikes}}
+    <ul class='recipeDisplay'>
+        <li class='recipeList'> 
+            <a  href="/recipe/post/{{_id}}"><img class='recipeListImage' alt='{{_id}} picture' src='/public/images/{{recipePicture}}'/></a><br>
+            <div class="recipeContent">
+            <a href="/recipe/post/{{_id}}">{{recipeName}}</a>
+            <p>Created By <a href='/users/profile/{{posterId}}'>{{posterUsername}}</a></p>
+            </div>
+        </li>
+    </ul>  
+    {{/each}}
+    {{/if}}
+    </div>
+    <a href="/logout">Log Out</a>
+</div>
+<script src="/public/js/clientSideSearchArecipe.js"></script>
