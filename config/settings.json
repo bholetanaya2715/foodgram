@@ -1,6 +1,6 @@
 {
     "mongoConfig": {
-       "MONGODB_URL": "mongodb://0.0.0.0:27017/",
-        "database": "Foodgram"
+        "serverUrl": "mongodb://localhost:27017/",
+        "database": "CS546_Group12_FinalProject"
     }
 }
